@@ -1,0 +1,18 @@
+enable
+configure terminal
+hostname SW-RH
+enable secret SenhaSecreta
+banner motd "ACESSO APENAS PARA O DEPARTAMENTO DE TI"
+line console 0
+password SenhadaConsole
+login
+exit
+service password-encryption
+interface vlan 1
+ip address 192.168.0.254 255.255.255.0
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+line vty 0 15
+password SenhadaVTY
+do write memory
