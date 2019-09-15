@@ -1,0 +1,315 @@
+Switch 1
+
+enable
+configure terminal
+hostname S1
+banner motd "ACESSO AUTORIZADO PARA O TI"
+enable secret SenhaEnable
+ip domain-name peachanddaisy.local
+crypto key generate rsa general-keys modulus 1024
+username Guilherme privilege 15 secret Batata
+username estagiario privilege 1 secret Batatinha
+line console 0
+password SenhadaConsole
+login
+exit
+service password-encryption
+line vty 0 15
+password SenhadaVTY
+transport input ssh
+exec-timeout 10
+login local
+exit
+vlan 10
+name TESTES
+exit
+vlan 20
+name TELEMARKETING
+exit
+vlan 30
+name CONSULTORES
+exit
+vlan 40
+name RH
+exit
+interface F0/1
+switchport mode access
+switchport access vlan 10
+exit
+interface vlan 10
+ip address 192.168.0.3 255.255.248.0
+description REDE 1
+no shutdown
+exit
+interface F0/10
+switchport mode access
+switchport access vlan 20
+exit
+interface vlan 20
+ip address 192.168.8.3 255.255.252.0
+description REDE 1
+no shutdown
+exit
+interface F0/18
+switchport mode access
+switchport access vlan 30
+exit
+interface vlan 30
+ip address 192.168.12.3 255.255.254.0
+description REDE 1
+no shutdown
+exit
+interface F0/23
+switchport mode access
+switchport access vlan 40
+exit
+interface vlan 40
+ip address 192.168.14.3 255.255.255.128
+description REDE 1
+no shutdown
+exit
+interface G0/1
+switchport mode trunk
+switchport trunk native vlan 88
+switchport trunk allowed vlan 10,20,30,40
+no shutdown
+exit
+ip default-gateway 192.168.0.1
+do wr
+________________________________
+Switch 2
+
+enable
+configure terminal
+hostname S2
+banner motd "ACESSO AUTORIZADO PARA O TI!"
+enable secret SenhaEnable
+ip domain-name peachanddaisy.local
+crypto key generate rsa general-keys modulus 1024
+username Guilherme privilege 15 secret Batata
+username estagiario privilege 1 secret Batatinha
+line console 0
+password SenhadaConsole
+login
+exit
+service password-encryption
+line vty 0 15
+password SenhadaVTY
+transport input ssh
+exec-timeout 10
+login local
+exit
+vlan 50
+name ANALISTAS
+exit
+vlan 60
+name OPERACAO
+exit
+vlan 70
+name TI
+exit
+vlan 80
+name ADMINISTRATIVO
+exit
+interface F0/1
+switchport mode access
+switchport access vlan 50
+exit
+interface vlan 50
+ip address 10.0.0.3 255.255.128.0
+description REDE 2
+no shutdown
+exit
+interface F0/24
+switchport mode access
+switchport access vlan 60
+exit
+interface vlan 60
+ip address 10.0.128.3 255.255.224.0
+description REDE 2
+no shutdown
+exit
+interface F0/21
+switchport mode access
+switchport access vlan 70
+exit
+interface vlan 70
+ip address 10.0.160.3 255.255.248.0
+description REDE 2
+no shutdown
+exit
+interface F0/22
+switchport mode access
+switchport access vlan 80
+exit
+interface vlan 80
+ip address 10.0.168.3 255.255.254.0
+description REDE 2
+no shutdown
+exit
+interface G0/1
+switchport mode trunk
+switchport trunk native vlan 88
+switchport trunk allowed vlan 50,60,70,80
+no shutdown
+exit
+ip default-gateway 10.0.0.1
+do wr
+____________________________________
+Switch 3
+
+enable
+configure terminal
+hostname S3
+banner motd "ACESSO AUTORIZADO PARA O TI!"
+enable secret SenhaEnable
+ip domain-name peachanddaisy.local
+crypto key generate rsa general-keys modulus 1024
+username Guilherme privilege 15 secret Batata
+username estagiario privilege 1 secret Batatinha
+line console 0
+password SenhadaConsole
+login
+exit
+service password-encryption
+line vty 0 15
+password SenhadaVTY
+transport input ssh
+exec-timeout 10
+login local
+exit
+vlan 80
+name FINANCAS
+exit
+vlan 60
+name OPERACOES
+exit
+vlan 88
+name RELOGIOS
+exit
+vlan 100
+name LIVRE
+exit
+interface F0/1
+switchport mode access
+switchport access vlan 80
+exit
+interface vlan 80
+ip address 192.168.32.3 255.255.252.0
+description REDE 3
+no shutdown
+exit
+interface F0/6
+switchport mode access
+switchport access vlan 60
+exit
+interface vlan 60
+ip address 192.168.36.3 255.255.254.0
+description REDE 3
+no shutdown
+exit
+interface F0/10
+switchport mode access
+switchport access vlan 88
+exit
+interface vlan 88
+ip address 192.168.38.3 255.255.255.0
+description REDE 3
+no shutdown
+exit
+interface F0/20
+switchport mode access
+switchport access vlan 100
+exit
+interface vlan 100
+ip address 192.168.39.3 255.255.255.192
+description REDE 3
+no shutdown
+exit
+interface G0/1
+switchport mode trunk
+switchport trunk native vlan 88
+switchport trunk allowed vlan 80,60,88,100
+no shutdown
+exit
+ip default-gateway 192.168.32.1
+do wr
+_________________________________
+Switch 4
+
+enable
+configure terminal
+hostname S4
+banner motd "ACESSO AUTORIZADO PARA O TI!"
+enable secret SenhaEnable
+ip domain-name peachanddaisy.local
+crypto key generate rsa general-keys modulus 1024
+username Guilherme privilege 15 secret Batata
+username estagiario privilege 1 secret Batatinha
+line console 0
+password SenhadaConsole
+login
+exit
+service password-encryption
+line vty 0 15
+password SenhadaVTY
+transport input ssh
+exec-timeout 10
+login local
+exit
+vlan 88
+name SERVIDORES
+exit
+vlan 200
+name VOZ
+exit
+vlan 90
+name TACACS
+exit
+vlan 88
+name MONITORAMENTO
+exit
+interface F0/1
+switchport mode access
+switchport access vlan 88
+exit
+interface vlan 88
+ip address 172.24.0.3 255.252.0.0
+description REDE 4
+no shutdown
+exit
+interface F0/10
+switchport mode access
+switchport access vlan 200
+exit
+interface vlan 200
+ip address 172.28.0.3 255.255.128.0
+description REDE 4
+no shutdown
+exit
+interface F0/13
+switchport mode access
+switchport access vlan 90
+exit
+interface vlan 90
+ip address 172.28.128.3 255.255.254.0
+description REDE 4
+no shutdown
+exit
+interface F0/15
+switchport mode access
+switchport access vlan 88
+exit
+interface vlan 88
+ip address 172.16.0.3 255.248.0.0
+description REDE 4
+no shutdown
+exit
+interface G0/1
+switchport mode trunk
+switchport trunk native vlan 88
+switchport trunk allowed vlan 88,200,90,88
+no shutdown
+exit
+ip default-gateway 172.16.0.1
+do wr
